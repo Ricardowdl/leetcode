@@ -6,23 +6,27 @@
 const MOD = 1e9 + 7;
 
 var specialTriplets = function (nums) {
-    const numCnt = new Map();
-    const numPartialCnt = new Map();
+    const mod = 1e9 + 7;
+    const numMap = new Map();
+    const leftNumMap = new Map();
 
-    for (const v of nums) {
-        numCnt.set(v, (numCnt.get(v) ?? 0) + 1);
+    for (let i = 0; i < nums.length; i++) {
+        numMap.set(nums[i], (numMap.get(nums[i]) ?? 0) + 1);
     }
 
-    let ans = 0;
-    for (const v of nums) {
-        const target = v * 2;
-        const lCnt = numPartialCnt.get(target) ?? 0;
+    let res = 0
+    for (let i = 0; i < nums.length; i++) {
+        const target = nums[i] * 2;
+        const leftNum = leftNumMap.get(target) ?? 0;
+        leftNumMap.set(nums[i], (leftNumMap.get(nums[i]) ?? 0) + 1);
 
-        numPartialCnt.set(v, (numPartialCnt.get(v) ?? 0) + 1);
-        const rCnt = (numCnt.get(target) ?? 0) - (numPartialCnt.get(target) ?? 0);
+        const rightNum = (numMap.get(target) ?? 0) - (leftNumMap.get(target) ?? 0);
+ 
 
-        ans += (lCnt * rCnt) % MOD;
-        ans %= MOD;
+        res = res + (leftNum * rightNum % mod);
+        res = res % mod
     }
-    return ans;
-}
+
+
+    return res;
+};
