@@ -4,6 +4,7 @@
  */
 var removeDuplicates = function(nums) {
     // test update github
+    // second push
     let head = 0,
         n = 0;
     while(head < nums.length){
