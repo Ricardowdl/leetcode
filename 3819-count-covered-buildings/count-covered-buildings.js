@@ -40,8 +40,6 @@ var countCoveredBuildings = function (n, buildings) {
             }
         }
     }
-    console.log('hengxiangCovered', hengxiangCovered);
-    console.log('shuxiangCovered', shuxiangCovered);
     // 基于横向上的建筑做判断， 横向上被遮挡的建筑，查询竖向上是否也被遮挡
     let res = 0;
     for (let i = 0; i <= n; i++) {
