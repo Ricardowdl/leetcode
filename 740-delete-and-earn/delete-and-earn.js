@@ -4,7 +4,6 @@
 */
 var deleteAndEarn = function (nums) {
     nums.sort((a, b) => a - b)
-    console.log(nums)
     const arr = [];
     let sum = 0;
     nums.forEach((num, i) => {
@@ -24,12 +23,10 @@ var deleteAndEarn = function (nums) {
     })
     arr.push(sum)
 
-    console.log('arr', arr)
 
     const dp = [];
     dp[0] = arr[0]
     if (arr[1] || arr[1] === 0) {
-        console.log(arr[0], arr[1]);
         dp[1] = Math.max(arr[0], arr[1])
     }
     if (arr[2] || arr[2] === 0) {
@@ -38,6 +35,5 @@ var deleteAndEarn = function (nums) {
         }
     }
 
-    console.log(dp)
     return dp[dp.length - 1]
 };
