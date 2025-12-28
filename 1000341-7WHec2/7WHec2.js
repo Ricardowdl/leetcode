@@ -1,47 +1,57 @@
-var sortList = function(head) {
-    // 递归终止条件：链表为空或只有一个节点
-    if (!head || !head.next) {
-        return head;
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+const merge = (left, right) => {
+    const node = new ListNode(0);
+    let curNode = node;
+    while(left && right){
+        if(left.val < right.val){
+            curNode.next = left;
+            left = left.next;
+        }else{
+            curNode.next = right;
+            right = right.next;
+        }
+        // 关键错误修正：必须移动 curNode 指针
+        curNode = curNode.next;
     }
 
-    // 1. 使用快慢指针寻找中间节点
+    // 剩余部分直接拼接，不需要循环遍历
+    if(left){
+        curNode.next = left;
+    }
+    if(right){
+        curNode.next = right;
+    }
+
+    return node.next;
+}
+
+var sortList = function(head) {
+    if(!head || !head.next){
+        return head
+    }
+
+    // 找中点
     let slow = head;
     let fast = head.next;
-    while (fast && fast.next) {
+    while(fast && fast.next){
         slow = slow.next;
         fast = fast.next.next;
     }
+    
 
-    // 2. 断开链表，分为两半
-    let mid = slow.next;
+    const leftNode = head;
+    const rightNode = slow.next;
     slow.next = null;
 
-    // 3. 递归排序左右两部分
-    let left = sortList(head);
-    let right = sortList(mid);
+    const left = sortList(leftNode);
+    const right = sortList(rightNode);
 
-    // 4. 合并两个有序链表
     return merge(left, right);
-};
 
-// 辅助函数：合并两个有序链表
-var merge = function(l1, l2) {
-    let dummy = new ListNode(0);
-    let curr = dummy;
-
-    while (l1 && l2) {
-        if (l1.val < l2.val) {
-            curr.next = l1;
-            l1 = l1.next;
-        } else {
-            curr.next = l2;
-            l2 = l2.next;
-        }
-        curr = curr.next;
-    }
-
-    if (l1) curr.next = l1;
-    if (l2) curr.next = l2;
-
-    return dummy.next;
-};
+}
