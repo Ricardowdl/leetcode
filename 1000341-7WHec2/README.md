@@ -1,0 +1,1 @@
+<h2><a href="https://leetcode.cn/problems/7WHec2">排序链表</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>English description is not available for the problem. Please switch to Chinese.</p>
