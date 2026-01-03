@@ -15,7 +15,6 @@ var deduceTree = function(preorder, inorder) {
         const node = new TreeNode(preorder[mid]);
 
         const midPreIndex = inorderObj[preorder[mid]];
-        debugger;
 
         node.left = dfs(mid+1, left, midPreIndex - 1);
         const leftRootLen = midPreIndex - left ;
