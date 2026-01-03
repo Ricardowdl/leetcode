@@ -4,9 +4,7 @@ var deduceTree = function(preorder, inorder) {
     }
     const dfs = (mid, left, right) => {
         
-        console.log(mid, left, right)
         if(right - left === 0){
-            console.log('right - left === 0', mid)
             const node = new TreeNode(preorder[mid])
             return node
         }
